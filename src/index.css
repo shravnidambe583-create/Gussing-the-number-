@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Custom smooth font rendering */
+  * {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Cute candy buttons with 3D press effect */
+.btn-candy {
+  @apply relative transition-all duration-150 active:translate-y-1 font-bold rounded-2xl cursor-pointer select-none outline-none;
+}
+
+.btn-candy:active {
+  box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Sparkle animation */
+@keyframes sparkle {
+  0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1) rotate(180deg); opacity: 1; }
+}
+
+.animate-sparkle {
+  animation: sparkle 2s infinite ease-in-out;
+}
+
+/* Soft floating cloud drift */
+@keyframes cloud-drift-left {
+  0% { transform: translateX(-50px); }
+  50% { transform: translateX(50px); }
+  100% { transform: translateX(-50px); }
+}
+
+@keyframes cloud-drift-right {
+  0% { transform: translateX(40px); }
+  50% { transform: translateX(-40px); }
+  100% { transform: translateX(40px); }
+}
+
+.animate-cloud-left {
+  animation: cloud-drift-left 18s ease-in-out infinite;
+}
+
+.animate-cloud-right {
+  animation: cloud-drift-right 22s ease-in-out infinite;
+}
+
+/* Rainbow border shimmer */
+@keyframes rainbow-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.rainbow-glow {
+  background: linear-gradient(135deg, #fbcfe8, #fed7aa, #fef08a, #bbf7d0, #bae6fd, #e9d5ff);
+  background-size: 300% 300%;
+  animation: rainbow-shimmer 8s ease infinite;
+}
+
+/* Custom rounded scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.45);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.reduced-motion *, .reduced-motion ::before, .reduced-motion ::after {
+  animation: none !important;
+  transition: none !important;
+}
